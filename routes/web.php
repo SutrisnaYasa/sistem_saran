@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\LaporanController;
@@ -24,12 +25,37 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('index');
     Route::middleware('is-admin')->group(function () {
         Route::resource('users', 'UserController');
+        Route::resource('saran', 'LaporanController');
         Route::get('saran/divisi/{divisiId}', [LaporanController::class, 'show'])->name('saran.show');
     });
     Route::get('saran', [LaporanController::class, 'index'])->name('saran.index');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('profile', [ProfileController::class, 'store'])->name('profile.store');
     Route::resource('divisi', 'DivisiController');
+});
+
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    
+   if($exitCode) return redirect()->route('saran.index');
+});
+
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:clear');
+    
+   if($exitCode) return redirect()->route('saran.index');
+});
+
+Route::get('/key-generate', function() {
+    $exitCode = Artisan::call('key:generate');
+    
+   if($exitCode) return redirect()->route('saran.index');
+});
+
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    
+   if($exitCode) return redirect()->route('saran.index');
 });
 
 

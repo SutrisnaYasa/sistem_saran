@@ -34,8 +34,9 @@
 </div>
 @endif
 <div class="card card-primary">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between">
         <h4>Form Pengajuan Saran</h4>
+        <a class="text-white text-decoration-none" href="{{ route('login') }}"><button class="btn btn-primary">Login</button></a>
     </div>
     <div class="card-body">
         <form action="{{ route('saran.store') }}" method="POST" enctype="multipart/form-data">

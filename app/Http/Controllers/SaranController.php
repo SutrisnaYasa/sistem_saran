@@ -49,7 +49,8 @@ class SaranController extends Controller
                 'topik_saran' => $request->topik_saran,
                 'nama_pengirim' => $request->nama_pengirim,
                 'telepon' => $request->telepon,
-                'file_bukti' => $fileName
+                'file_bukti' => $fileName,
+                'status' => 0
             ]);
 
             // Kirim whatsapp jika pengirim mengisi identitas

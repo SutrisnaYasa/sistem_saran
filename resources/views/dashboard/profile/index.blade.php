@@ -26,7 +26,7 @@
         @endif
         <div class="card card-primary">
             <div class="card-header">
-                <h4>Ubah Profile</h4>
+                <h4>Profile</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('dashboard.profile.store') }}" method="POSt">
@@ -38,13 +38,15 @@
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            value="{{ $user->name }}">
+                        disabled value="{{ $user->name }}">
                         @error('name')
                         <span class="invalid-feedbak">
                             {{ $message }}
                         </span>
                         @enderror
                     </div>
+
+                    @if (Auth::user()->username != "mahasiswa")
                     <div class="section-title">Ganti Password</div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -55,13 +57,18 @@
                         <input type="password" name="new_password" class="form-control">
                     </div>
                     <input type="submit" id="submit" value="submit" class="d-none">
+                    @endif
+
                 </form>
             </div>
+            @if (Auth::user()->username != "mahasiswa")
             <div class="card-footer">
                 <button type="button" class="btn btn-primary btn-icon icon-left"
                     onclick="document.getElementById('submit').click();"><i class="fas fa-save"></i> Simpan
                     Perubahan</button>
             </div>
+            @endif
+
         </div>
     </div>
 </section>

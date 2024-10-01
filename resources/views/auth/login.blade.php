@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="card card-primary">
-    <div class="card-header">{{ __('Login') }}</div>
+
+    <div class="card-header d-flex justify-content-between">
+        <h4>{{ __('Login') }}</h4>
+        <a class="text-white text-decoration-none" href="{{ url()->previous() }}"><button type="button" class="btn btn-primary btn-block">
+            Kembali
+        </button></a>
+    </div>
 
     <div class="card-body">
         <form method="POST" action="{{ route('login') }}">
